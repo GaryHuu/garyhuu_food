@@ -600,6 +600,17 @@ header {
     margin: 0 15px;
 }
 
+.product__qty input.counter::-webkit-outer-spin-button,
+.product__qty input.counter::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.product__qty input.counter[type=number] {
+  -moz-appearance: textfield;
+}
+
 .product__qty i {
     margin: 0 8px;
     font-size: 1.6rem;

@@ -217,14 +217,20 @@ var productQtyUpdate = document.querySelectorAll('.product__qty-update');
 inputNumberProduct.forEach((element, index) => {
     var currentValue = inputNumberProduct[index].value;
     element.addEventListener("input", () => {
-        if(currentValue !== inputNumberProduct[index].value) {
-            productQtyUpdate[index].classList.remove('d-n');
-            productQtyUpdate[index].addEventListener('click', () => {
-                productQtyUpdate[index].classList.add('d-n');
-                currentValue = inputNumberProduct[index].value;
-            });
+        if(inputNumberProduct[index].value > 100) {
+            alert('Chỉ Được Chọn Tối Đa 100 Sản phẩm');
+            inputNumberProduct[index].value = currentValue;
         } else {
-            productQtyUpdate[index].classList.add('d-n');
+            if(currentValue !== inputNumberProduct[index].value) {
+
+                productQtyUpdate[index].classList.remove('d-n');
+                productQtyUpdate[index].addEventListener('click', () => {
+                    productQtyUpdate[index].classList.add('d-n');
+                    currentValue = inputNumberProduct[index].value;
+                });
+            } else {
+                productQtyUpdate[index].classList.add('d-n');
+            }
         }
     });
 });
