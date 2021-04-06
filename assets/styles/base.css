@@ -1,0 +1,173 @@
+:root {
+    --wh-c : #ffffff;
+    --main-color: #7FAF51;
+    --bla-c: #000000;
+    --or-c: #FFBC53;
+    --border-c: #eeeeee;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: rgb(255,79,99);
+}
+
+body {
+    height: 2000px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
+    max-width: 1920px;
+    margin: 0 auto;
+}   
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.d-f {
+    display: flex;
+}
+
+.d-b {
+    display: block !important;
+}
+
+.d-b-100 {
+    display: block;
+    width: 100%;
+}
+
+.d-n {
+    display: none;
+}
+
+.d-n-i {
+    display: none !important;
+}
+
+.a-i-c {
+    align-items: center;
+}
+
+@keyframes longToShort {
+    0% {
+        transform: scaleX(0);
+    }
+    70% {
+        transform: scaleX(1.6);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes rotation {
+    from {
+            transform: rotate(0deg);
+    }
+    to {
+            transform: rotate(359deg);
+    }
+}
+
+@keyframes navCatetory {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes animatedBackground {
+	0% { background-position: 0 0; }
+	100% { background-position: -300px 0; }
+}
+
+@keyframes transformTranslateY {
+    0% { transform: translateY(-300px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes transformTranslateYClose {
+    0% { 
+        transform: translateY(0);
+    }
+    100% { 
+        transform: translateY(-300px);
+    }
+}
+
+.modal__overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.modal__body {
+    position: absolute;
+    z-index: 2;
+}
+
+.times-pr {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    color: rgb(163, 163, 163);
+    font-size: 1.7rem;
+    right: 0;
+    padding: 4px;
+}
+
+.times-pr:hover {
+    color: var(--main-color);
+}
+
+.btn-primary-1 {
+    background-color: var(--main-color);
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: all linear .3s;
+}
+
+.btn-primary-1:hover {
+    background-color: #FFBC53;
+}
+
+.transform-top-300 {
+    transform: translateY(300px);
+}
