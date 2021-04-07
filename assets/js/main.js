@@ -247,3 +247,22 @@ inputNumberProduct.forEach((element, index) => {
 });
 
 
+// Header Animation
+
+header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 0) {
+        header.classList.add('header-animation-scroll');
+    } else {
+        header.classList.remove('header-animation-scroll');
+    }
+});
+
+
+//Slider
+$('.multiple-items').slick({
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+});
