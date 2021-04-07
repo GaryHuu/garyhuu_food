@@ -78,6 +78,9 @@ var closeCart = document.querySelector('.cart__times');
 // Check click button cart
 buttonCart.addEventListener('click', () => {
     bodyCart.classList.toggle('d-b');
+    if (bodyCart.classList.contains('d-b')) {
+        checkTrast();
+    } 
 });
 
 // Cart Outside Click
@@ -104,95 +107,48 @@ window.onmousemove = function (e) {
     });
 };
 
-// Product Display
-var cartProduct = document.querySelectorAll('.product__details-item');
-
-// Popup Delete Product in Cart 
-var itemDeleteProduct = document.querySelector('.popup-delete-product-cart');
-var acceptDelete = document.querySelector('.accept-delete');
-var notAcceptDelete = document.querySelector('.not-accept-delete');
-var closeButtonDeleteProduct = document.querySelector('.close-delete-product');
-var openDeleteProduct = document.querySelectorAll('.product__qty-delete');
-
-// Counter Product
-function couterProduct () {
-    return document.querySelectorAll('.product__details-item').length;
-}
-
-// Delete Rroduct click 
-openDeleteProduct.forEach((element, index) => {
-    element.addEventListener('click', () => {
-        modalOverlay.classList.remove('d-n');
-        modalBody.classList.remove('d-n');
-        itemDeleteProduct.classList.add('popup-delete-product-cart-active');
-        var numberTotalProduct = couterProduct();
-        acceptDelete.onclick = function() {
-            deleteProduct(index, numberTotalProduct);
-            close();
-        }
-        closeButtonDeleteProduct.onclick = close
-        modalOverlay.onclick = close;
-        notAcceptDelete.onclick = close;
-        function close () {
-            itemDeleteProduct.classList.remove('popup-delete-product-cart-active');
-            setTimeout( function () {
-                modalOverlay.classList.add('d-n');
-                modalBody.classList.add('d-n');
-            }, 150);
-        }
-
-    });
-});
-
-// Update Total Price
-function updateTotalPrice (total , numberProduct) {
+// Update Product Function
+function updateProduct () {
+    var totalProductType = counterProductType();
+    var totalPayment = counterTotalPayment();
+    var totalProduct = counterTotalProduct();
     var productTotalPay = document.querySelector('#product__total-price');
     var productTotalPayDisplayCart = document.querySelector('.price-of-cart');
     var headerCartCounter = document.querySelector('.header__cart-couter');
     var productTotalNumber = document.querySelector('#product__total-couter');
-    headerCartCounter.innerHTML = numberProduct;
-    productTotalNumber.innerHTML = numberProduct;
-    productTotalPay.innerHTML = total;
-    productTotalPayDisplayCart.innerHTML = total;
-    updateProgress(total);
-}
-
-// Update Progress
-function updateProgress (total) {
+    headerCartCounter.innerHTML = totalProductType;
+    productTotalNumber.innerHTML = totalProduct;
+    productTotalPay.innerHTML = totalPayment;
+    productTotalPayDisplayCart.innerHTML = totalPayment;
     var totalProgress = document.querySelector('.product__page-price');
     var progressDisplay = document.querySelector('.product__page-progress-per');
-    totalProgress.innerHTML = `$ ${total} / $70.00`;
-    var width = (total / 70 * 100) + '%';
+    totalProgress.innerHTML = `$ ${totalPayment} / $70.00`;
+    var width = (totalPayment / 70 * 100) + '%';
     progressDisplay.style.width = width;
 }
 
-// Check Click When update product in cart
-var buttonUpdateProduct = document.querySelectorAll('.product__qty-update');
-buttonUpdateProduct.forEach(button => {
-    button.addEventListener('click', () => {
-        var sum = totalPay();
-        var number = counterNumberProduct();
-        updateTotalPrice(sum, number);
-    });
-});
-
 // Delete Product Function
-function deleteProduct(index, length) {
+function deleteProduct(index) {
+    var cartProduct = document.querySelectorAll('.product__details-item');
+    var length = cartProduct.length;
     Array.from(cartProduct)[index].remove();
     if(--length === 0) {
         bodyCart.classList.add('cart--empty');
         bodyCart.classList.remove('cart--product');
-    }
-    var total = totalPay();
-    var number = counterNumberProduct();
-    updateTotalPrice(total, number);    
+    } 
+    updateProduct();
 }
 
-// Total Pay
-function totalPay () {
+// Counter Product type
+function counterProductType() {
+    return document.querySelectorAll('.product__details-item').length;
+}
+
+// Total Payment
+function counterTotalPayment() {
     var cartProduct = document.querySelectorAll('.product__details-item');
     var total = 0;
-    var length = couterProduct ();
+    var length = cartProduct.length;
     for (var i = 0; i < length; ++i) {
         total = total + (parseFloat(cartProduct[i].querySelector('.product__price-total').innerHTML)
                          * parseFloat(cartProduct[i].querySelector('.counter').value));
@@ -200,16 +156,60 @@ function totalPay () {
     return total.toFixed(2);
 }
 
-// Count Number Product
-function counterNumberProduct () {
+// Count Total Product
+function counterTotalProduct() {
     var cartProduct = document.querySelectorAll('.product__details-item');
     var numberProduct = 0;
-    var length = couterProduct ();
+    var length =cartProduct.length;
     for (var i = 0; i < length; ++i) {
         numberProduct = numberProduct + parseInt(cartProduct[i].querySelector('.counter').value);
     }
     return numberProduct;
 }
+
+// Popup Delete Product in Cart 
+var itemDeleteProduct = document.querySelector('.popup-delete-product-cart');
+var acceptDelete = document.querySelector('.accept-delete');
+var notAcceptDelete = document.querySelector('.not-accept-delete');
+var closeButtonDeleteProduct = document.querySelector('.close-delete-product');
+
+
+
+// Delete Product click 
+function checkTrast() {
+    var openDeleteProduct = document.querySelectorAll('.product__qty-delete');
+    openDeleteProduct.forEach((element, index) => {
+        element.addEventListener('click', () => {
+            modalOverlay.classList.remove('d-n');
+            modalBody.classList.remove('d-n');
+            itemDeleteProduct.classList.add('popup-delete-product-cart-active');    
+            acceptDelete.onclick = function() {
+                deleteProduct(index);   
+                close();
+                checkTrast();
+            }
+            closeButtonDeleteProduct.onclick = close
+            modalOverlay.onclick = close;
+            notAcceptDelete.onclick = close;
+        });
+        function close() {
+            itemDeleteProduct.classList.remove('popup-delete-product-cart-active');
+            setTimeout( function () {
+                modalOverlay.classList.add('d-n');
+                modalBody.classList.add('d-n');
+            }, 150);
+        }
+    });
+}   
+
+// Check Click When update product in cart
+var buttonUpdateProduct = document.querySelectorAll('.product__qty-update');
+buttonUpdateProduct.forEach(button => {
+    button.addEventListener('click', () => {
+        updateProduct();
+    });
+});
+
 
 // Number Product Cart
 var inputNumberProduct = document.querySelectorAll('.counter');
@@ -217,20 +217,31 @@ var productQtyUpdate = document.querySelectorAll('.product__qty-update');
 inputNumberProduct.forEach((element, index) => {
     var currentValue = inputNumberProduct[index].value;
     element.addEventListener("input", () => {
-        if(inputNumberProduct[index].value > 100) {
-            alert('Chỉ Được Chọn Tối Đa 100 Sản phẩm');
-            inputNumberProduct[index].value = currentValue;
+        // Check hợp lệ
+        var inputValue = parseInt(inputNumberProduct[index].value);
+        var checkNaN = isNaN(inputValue);
+        if (checkNaN) {
+            currentValue = 0;  
+            inputNumberProduct[index].value = 0;
         } else {
-            if(currentValue !== inputNumberProduct[index].value) {
-
-                productQtyUpdate[index].classList.remove('d-n');
-                productQtyUpdate[index].addEventListener('click', () => {
-                    productQtyUpdate[index].classList.add('d-n');
-                    currentValue = inputNumberProduct[index].value;
-                });
-            } else {
+            if (inputNumberProduct[index].value >= 100 ) {
+                currentValue = 99;  
+                inputNumberProduct[index].value = 99;
+                alert("Bạn có thể mua tối đa 99 sản phẩm !")
+            } 
+        }
+        //Update
+        if (currentValue !== inputNumberProduct[index].value) {
+            productQtyUpdate[index].classList.remove('d-n');
+            productQtyUpdate[index].addEventListener('click', () => {
                 productQtyUpdate[index].classList.add('d-n');
-            }
+                currentValue = inputNumberProduct[index].value;
+            });
+        } else {
+            productQtyUpdate[index].classList.add('d-n');
+        }
+        if (currentValue == 0) {
+            
         }
     });
 });
