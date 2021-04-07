@@ -4,7 +4,7 @@ header {
     left: 0;
     top: 0;
     right: 0;
-    z-index: 10000;
+    z-index: 2;
 }
 
 .header-animation-scroll {
@@ -388,7 +388,7 @@ header {
     overflow: hidden;
     border: 2px solid rgb(221,221,221);
     position: absolute;
-    top: -55px;
+    top: 25px;
     left: 305px;
 }
 
