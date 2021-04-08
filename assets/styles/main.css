@@ -747,7 +747,7 @@ span#product__total-price {
     position: absolute;
     width: 500px;
     background-color: var(--wh-c);
-    top: 0;
+    top: 58px;
     left: 510px;
     text-align: center;
     animation: transformTranslateYClose linear .1s forwards;
@@ -873,11 +873,13 @@ span#product__total-price {
     margin-right: 20px;
     background-color: var(--main-color);
     border: 1px solid var(--main-color);
+    outline: none;
 }
 
-.slider-item__lookbook{
+.slider-item__lookbook {
     background-color: transparent;
     border: 1px solid var(--wh-c);
+    outline: none;
 }
 
 .slider-item__lookbook:hover{
