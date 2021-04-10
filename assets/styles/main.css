@@ -808,6 +808,7 @@ span#product__total-price {
     position: relative;
     padding: 5px;
     background-size: 100% 100%;
+    cursor: pointer;
 }
 
 .slider-item-1 {
@@ -827,6 +828,7 @@ span#product__total-price {
     left: 225px;
     top: 210px;
     color: var(--wh-c);
+    cursor: default;
 }
 
 .caption-1{
@@ -842,16 +844,29 @@ span#product__total-price {
 }
 
 .caption-2 {
-
+    
 }
 
 .caption-3{
     
 }
 
+.caption-group-1,
+.caption-group-2 {
+    /* opacity: 0; */
+}
+
 .caption-4{
     font-size: 1.8rem;
     line-height: 4.5rem;
+}
+
+.animation-group-1 {
+    animation: left-to-right-desc-slide linear 1s forwards;
+}
+
+.animation-group-2 {
+    animation: right-to-left-desc-slide linear 1s forwards;
 }
 
 .slider-item__btn{
@@ -891,3 +906,33 @@ span#product__total-price {
     background-color: transparent;
     border: 1px solid var(--wh-c);
 }
+
+.slick-arrow {
+    z-index: 2;
+    opacity: 0;
+}
+
+.slick-arrow::before {
+    font-size: 3rem;
+}
+
+.slick-next {
+    animation: slick-next-not-hover ease-in-out .3s forwards;
+    right: 10px;;
+}
+
+.slick-prev {
+    animation: slick-prev-not-hover ease-in-out .3s forwards;
+    left: 10px;
+}
+
+.slider-banner:hover  > .slick-prev {
+    animation: slick-prev ease-in-out .3s forwards;
+}
+
+.slider-banner:hover  > .slick-next {
+    animation: slick-next ease-in-out .3s forwards;
+}
+
+
+

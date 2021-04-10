@@ -261,8 +261,68 @@ window.addEventListener('scroll', () => {
 
 //Slider
 $('.multiple-items').slick({
-  infinite: true,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // autoplay: true
 });
+
+
+
+
+
+
+
+
+
+// $(document).ready(function(){
+//     $('.slick-slider').on('afterChange', function(event, slick, currentSlide){
+//         var i = 0;
+//         if(currentSlide == 2 ) i = 0;
+//         else ++i;
+//         console.log(i);
+//         var silderItems = document.querySelectorAll('.slider-item');
+//         var captionGroup1 = silderItems[i].querySelectorAll('.caption-group-1');
+//         var captionGroup2 = silderItems[i].querySelectorAll('.caption-group-2');
+//         captionGroup1.forEach((element, index) => {
+//             new Promise((resolve) => {
+//                 setTimeout(() => {
+//                     element.classList.add('animation-group-1');
+//                 },1000);
+//                 resolve();
+//             })
+//             .then(() => {
+//                 captionGroup2.forEach((element, index) => {
+//                     element.classList.add('animation-group-2');
+//                 });
+//             })
+//         });
+//         console.log(currentSlide);
+//         var captionGroup1temp = silderItems[currentSlide].querySelectorAll('.caption-group-1');
+//         var captionGroup2temp = silderItems[currentSlide].querySelectorAll('.caption-group-2');
+//         captionGroup1temp.forEach(element => {
+//             element.classList.remove('animation-group-1');
+//         });
+//         captionGroup2temp.forEach(element => {
+//             element.classList.remove('animation-group-2');
+//         });
+        
+//     }); 
+// });
+
+
+// // var silderItems = document.querySelectorAll('.slider-item');
+// // console.log(silderItems);
+// // silderItems.forEach(element => {
+// //     if(element.classList.contains('slick-active')) {
+// //         // console.log(element);
+// //     }
+// // });
+
+
+// // animation: right-to-left-desc-slide linear .5s forwards;
+
+
+// // var captionGroup1 = document.querySelectorAll('.caption-group-1');
+// // console.log(captionGroup1);
