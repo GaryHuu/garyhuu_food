@@ -853,7 +853,7 @@ span#product__total-price {
 
 .caption-group-1,
 .caption-group-2 {
-    /* opacity: 0; */
+    opacity: 0;
 }
 
 .caption-4{
