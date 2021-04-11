@@ -926,6 +926,7 @@ span#product__total-price {
     left: 10px;
 }
 
+
 .slider-banner:hover  > .slick-prev {
     animation: slick-prev ease-in-out .3s forwards;
 }
@@ -934,5 +935,94 @@ span#product__total-price {
     animation: slick-next ease-in-out .3s forwards;
 }
 
+.slick-slide {
+    outline: none;
+}
+
+.page-messages {
+    display: block;
+    font-size: 1.5rem;
+    color: #666;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu-title {
+    text-align: center;
+    font-size: 4.5rem;
+    color: #222;
+    font-weight: 700;
+    line-height: 70px;
+    position: relative;
+}
+
+.menu-title::before {
+    position: absolute;
+    content: url(../images/biolife-arrow.png);
+    left: calc(50% - 118px);
+}
+
+.product-option {
+    position: relative;
+    margin: 20px 0;
+}
+
+.product-option ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-option li {
+    background-color: var(--wh-c);
+    margin: 0 20px;
+    border: 2px solid var(--border-c);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+}
+
+.product-option__shop {
+
+}
+
+.product-option__star {
+    padding: 8px 20px;
+    border-right: 2px solid var(--border-c);
+    font-size: 1.5rem;
+    color: #888;
+}
+
+.product-option__title {
+    padding: 8px 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.product-option__active {
+    background-color: var(--main-color)!important;
+}
+
+.product-option__active .product-option__star {
+    color: #ffeb07;
+}
+
+.product-option__active .product-option__title {
+    color: var(--wh-c);
+}
+
+.product-option li:hover {
+    background-color: var(--main-color);
+}
+
+.product-option li:hover .product-option__star {
+    color: #ffeb07;
+}
+
+.product-option li:hover .product-option__title {
+    color: var(--wh-c);
+}
 
 

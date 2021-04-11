@@ -260,8 +260,7 @@ window.addEventListener('scroll', () => {
 
 
 //Slider
-$('.multiple-items').slick({
-    dots: true,
+$('.slider-banner').slick({
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -324,3 +323,28 @@ $(document).ready(function(){
         });
     }); 
 }); 
+
+
+// Menu Active
+const loadingIcon = document.querySelector('.lds-spinner');
+const productOption = document.querySelectorAll('.product-option li');
+//check Click
+
+
+productOption.forEach(element => {
+    element.addEventListener('click', () => {
+        element.classList.add('product-option__active');
+        loadingIcon.classList.remove('d-n');
+        productOption.forEach(e => {
+            if(e !== element) {
+                e.classList.remove('product-option__active');
+            }
+        });
+        setTimeout(() => {
+            if(!loadingIcon.classList.contains('d-n')) loadingIcon.classList.add('d-n');
+        }, 500);
+    });
+});
+
+
+
